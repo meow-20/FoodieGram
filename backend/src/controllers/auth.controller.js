@@ -144,7 +144,7 @@ async function loginFoodPartner(req, res) {
 
   const token = jwt.sign(
     {
-      user: {
+      foodpartner: {
         _id: foodpartner._id,
       },
     },
