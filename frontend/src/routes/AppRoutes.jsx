@@ -4,11 +4,13 @@ import UserRegister from '../components/UserRegister'
 import UserLogin from '../components/UserLogin'
 import FoodPartnerRegister from '../components/FoodPartnerRegister'
 import FoodPartnerLogin from '../components/FoodPartnerLogin'
+import RegisterChoice from '../components/RegisterChoice'
 
 const AppRoutes = () => {
   return (
     <Router>
         <Routes>
+            <Route path="/register" element={<RegisterChoice />} />
             <Route path="/user/register" element={<UserRegister />} />
             <Route path="/user/login" element={<UserLogin />} />
             <Route path="/foodpartner/register" element={<FoodPartnerRegister />} />

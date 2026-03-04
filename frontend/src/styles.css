@@ -77,3 +77,41 @@ button:hover {
 .link a:hover {
   text-decoration: underline;
 }
+
+/* Register Choice Page Styles */
+.register-choice-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.register-choice-btn {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.user-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.user-btn:hover {
+  background-color: #45a049;
+}
+
+.partner-btn {
+  background-color: #ff9800;
+  color: white;
+}
+
+.partner-btn:hover {
+  background-color: #e68900;
+}
