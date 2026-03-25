@@ -4,38 +4,38 @@ const { v4: uuidv4 } = require("uuid");
 
 async function createFood(req, res) {
   try {
-    const { name, description } = req.body;
-    // console.log(req.foodPartner);
-    // console.log(req.body);
-    // console.log(req.file);
+    // console.log("Body:", req.body);
+    // console.log("File:", req.file);
+
+    const name = req.body?.name;
+    const description = req.body?.description;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    if (!name) {
+      return res.status(400).json({ message: "Name is required" });
+    }
 
     const uploadResult = await uploadFile(req.file.buffer, uuidv4());
 
     const foodItem = await foodModel.create({
-      name,
-      description,
+      name: req.body.name,
+      description: req.body.description,
       video: uploadResult.url,
       foodPartner: req.foodPartner._id,
     });
-    res
-      .status(201)
-      .json({ message: "Food item created successfully!", food: foodItem });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+
+    res.status(201).json({ message: "Food item success", food: foodItem });
+  } catch (error) {
+    console.error("FULL ERROR:", error);
+    res.status(500).json({ message: error.message, stack: error.stack });
   }
 }
 
-async function getFoodItems(req, res) {
-  try {
-    const foodItems = await foodModel.find({})
-    res
-      .status(200)
-      .json({ message: "Food Items fetched successfully", foodItems });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-}
+
+
 module.exports = {
   createFood,
-  getFoodItems,
 };
