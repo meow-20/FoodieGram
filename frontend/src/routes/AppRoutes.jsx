@@ -5,11 +5,13 @@ import UserLogin from '../components/UserLogin'
 import FoodPartnerRegister from '../components/FoodPartnerRegister'
 import FoodPartnerLogin from '../components/FoodPartnerLogin'
 import RegisterChoice from '../components/RegisterChoice'
+import Home from '../pages/Home'
 
 const AppRoutes = () => {
   return (
     <Router>
         <Routes>
+          <Route path='/' element={<Home/>}/>
             <Route path="/register" element={<RegisterChoice />} />
             <Route path="/user/register" element={<UserRegister />} />
             <Route path="/user/login" element={<UserLogin />} />

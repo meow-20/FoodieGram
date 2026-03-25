@@ -1,16 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const UserRegister = () => {
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const fullName = e.target.fullName.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    axios.post('http://localhost:3000/api/auth/user/register', { fullName, email, password })
-  }
+    const response = await axios.post(
+      "http://localhost:3000/api/auth/user/register",
+      { fullName, email, password },
+      {
+        withCredentials: true,
+      },
+    );
+
+    console.log(response.data);
+
+    navigate("/");
+  };
   return (
     <div className="w-full max-w-md p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">
@@ -18,7 +29,10 @@ const UserRegister = () => {
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <label htmlFor="fullName" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="fullName"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Full Name
           </label>
           <input
@@ -30,7 +44,10 @@ const UserRegister = () => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="email"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Email
           </label>
           <input
@@ -42,7 +59,10 @@ const UserRegister = () => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="password" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="password"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Password
           </label>
           <input
@@ -61,7 +81,10 @@ const UserRegister = () => {
         </button>
       </form>
       <div className="mt-4 text-center">
-        <Link to="/user/login" className="text-blue-500 hover:text-blue-600 hover:underline">
+        <Link
+          to="/user/login"
+          className="text-blue-500 hover:text-blue-600 hover:underline"
+        >
           Already have an account? Login
         </Link>
       </div>
